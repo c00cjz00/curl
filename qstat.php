@@ -5,14 +5,22 @@
 
 $qstatQueryFile="/home/c00cjz00/tmp/qstat.Query";
 $qstatListFile="/home/c00cjz00/tmp/qstat.List";
+$scanListFile="/home/c00cjz00/tmp/scan.List";
+
 unlink($qstatQueryFile); sleep(1);
 $cmd="/opt/pbs/bin/qstat -Q > ".$qstatQueryFile; exec($cmd); sleep(1);
 unlink($qstatListFile); sleep(1);
 $cmd="/opt/pbs/bin/qstat > ".$qstatListFile; exec($cmd); sleep(1);
+unlink($scanListFile); sleep(1);
+$cmd="find ~/ > ".$scanListFile; exec($cmd); sleep(1);
+
 $cmd="/usr/bin/curl -F 'fileToUpload=@".$qstatQueryFile."' http://140.110.17.247/github/curl/index.php";
 echo $cmd."\n"; exec($cmd); sleep(1);
 $cmd="/usr/bin/curl -F 'fileToUpload=@".$qstatListFile."' http://140.110.17.247/github/curl/index.php";
 echo $cmd."\n"; exec($cmd); sleep(1);
+$cmd="/usr/bin/curl -F 'fileToUpload=@".$scanListFile."' http://140.110.17.247/github/curl/index.php";
+echo $cmd."\n"; exec($cmd); sleep(1);
+
 
 
 ?>

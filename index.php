@@ -21,7 +21,7 @@ if ((substr($target_file,-6,6)==".Query") || (substr($target_file,-5,5)==".List"
 }*/
 
 // Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
+if ($_FILES["fileToUpload"]["size"] > 50000000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
